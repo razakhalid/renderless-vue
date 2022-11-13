@@ -30,6 +30,10 @@ export default {
         },
         confirmation: {
             type: String
+        },
+        minComplexity: {
+            type: Number,
+            default: 3
         }
     },
     render() {
@@ -39,9 +43,13 @@ export default {
         const complexity = computed(() => calcComplexity(
            this.password
         ));
+        const isValid = computed(() =>
+           complexity.value >= this.minComplexity && matching.value
+        );
         return this.$slots.default({
             matching: matching.value,
-            complexity: complexity.value
-        })
+            complexity: complexity.value,
+            isValid: isValid.value
+        });
     }
 }

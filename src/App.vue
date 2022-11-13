@@ -19,7 +19,8 @@
         :confirmation="confirmation"
         v-slot="{
           matching,
-          complexity
+          complexity,
+          isValid
         }">
       <div class="wrapper">
         <div class="field">
@@ -34,9 +35,13 @@
           <div :class="['complexity', complexityStyle(complexity)]">
           </div>
         </div>
+        <div class="field">
+          <button :disabled="!isValid">Submit</button>
+        </div>
       </div>
       <p>Matches: {{ matching }}</p>
       <p>Complexity: {{ complexity }}</p>
+      <p>Is Valid: {{ isValid }}</p>
     </renderless-password>
   </div>
 
